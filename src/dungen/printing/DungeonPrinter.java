@@ -1,23 +1,26 @@
-package dungen;
+package dungen.printing;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import dungen.Dungeon;
 import dungen.tile.Tile;
 
 /**
  * Prints a dungeon to an image.
  */
-public class DunGenPrinter {
+public class DungeonPrinter {
 	
 	/**
 	 * Print a dungeon layout to an image on disk.
-	 * @param name
-	 * @param path
-	 * @param dungeon
+	 * @param name The image file name.
+	 * @param path The image file path.
+	 * @param dungeon The dungeon.
+	 * @param tileColourPicker The tile colour picker.
 	 */
-	public static void print(String name, String path, Dungeon dungeon) {
+	public static void print(String name, String path, Dungeon dungeon, ITileColourPicker tileColourPicker) {
 		int size   = 400;
 		int offset = size / 2;
 		
@@ -31,7 +34,7 @@ public class DunGenPrinter {
 			int y = tile.getY() + offset;
 			
 			// Set the pixel colour at the x/y position.
-			image.setRGB(x, y, getTileColour(tile));
+			image.setRGB(x, y, tileColourPicker.getTileColour(tile));
 		}
 		
 		// Try to write the image to disk.
@@ -43,29 +46,11 @@ public class DunGenPrinter {
 	}
 	
 	/**
-	 * Gets the colour to use in drawing a tile.
-	 * @param tile The tile.
-	 * @return The colour to use in drawing a tile.
-	 */
-	private static int getTileColour(Tile tile) {
-		switch (tile.getType()) {
-			case EMPTY:
-				return createColour(100, 100, 100);
-			case ENTRANCE:
-				return createColour(150, 150, 250);
-			case WALL:
-				return createColour(255, 255, 255);
-			default:
-				return createColour(0, 0, 0);
-		}
-	}
-	
-	/**
-	 * Create a colour int based on RGB values.
-	 * @param red 
-	 * @param green
-	 * @param blue
-	 * @return A colour int based on RGB values.
+	 * Create a colour integer based on RGB values.
+	 * @param red The red value.
+	 * @param green The green value.
+	 * @param blue The blue value.
+	 * @return A colour integer based on RGB values.
 	 */
 	public static int createColour(int red, int green, int blue) {
 		return (red << 16) | (green << 8) | blue;

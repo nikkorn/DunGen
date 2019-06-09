@@ -1,6 +1,10 @@
 package dungen;
 
 import java.util.ArrayList;
+
+import dungen.printing.DefaultTileColourPicker;
+import dungen.printing.DungeonPrinter;
+import dungen.printing.ITileColourPicker;
 import dungen.tile.Tile;
 
 /**
@@ -39,11 +43,21 @@ public class Dungeon {
 	public DunGenConfiguration getConfiguration() { return configuration; }
 	
 	/**
-	 * Print an overview of the dungeon as a .png image file.
+	 * Print an overview of the dungeon as a .png image file using the specified tile colour picker.
+	 * @param name The image file name.
+	 * @param path The path to the directory at which to generate the image.
+	 * @param tileColourPicker The tile colour picker.
+	 */
+	public void print(String name, String path, ITileColourPicker tileColourPicker) {
+		DungeonPrinter.print(name, path, this, tileColourPicker);
+	}
+	
+	/**
+	 * Print an overview of the dungeon as a .png image file using the default tile colour picker.
 	 * @param name The image file name.
 	 * @param path The path to the directory at which to generate the image.
 	 */
 	public void print(String name, String path) {
-		DunGenPrinter.print(name, path, this);
+		print(name, path, new DefaultTileColourPicker());
 	}
 }
