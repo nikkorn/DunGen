@@ -1,0 +1,18 @@
+{
+    "name": "empty_1_1_west",
+    "cells": [
+        {
+            "position": {
+                "x": 0, 
+                "y": 0 
+            },
+            "entrance": {
+                "direction": "WEST",
+                "attributes": {
+                    "door_type": "NORMAL"
+                }
+            },
+            "tiles": []
+        }
+    ]
+}

@@ -37,4 +37,13 @@ public class Dungeon {
 	 * @return configuration
 	 */
 	public DunGenConfiguration getConfiguration() { return configuration; }
+	
+	/**
+	 * Print an overview of the dungeon as a .png image file.
+	 * @param name The image file name.
+	 * @param path The path to the directory at which to generate the image.
+	 */
+	public void print(String name, String path) {
+		DunGenPrinter.print(name, path, this);
+	}
 }

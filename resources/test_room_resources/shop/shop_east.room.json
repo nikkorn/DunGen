@@ -1,0 +1,20 @@
+{
+    "name": "shop_east",
+    "category": "shop",
+    "cells": [
+        {
+            "position": {
+                "x": 0, 
+                "y": 0 
+            },
+            "entrance": {
+                "direction": "EAST",
+                "attributes": {
+                    "door_type": "SHOP"
+                }
+            },
+            "blocked": ["NORTH", "SOUTH", "WEST"],
+            "tiles": []
+        }
+    ]
+}

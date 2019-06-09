@@ -1,0 +1,47 @@
+{
+    "name": "spawn",
+    "min": 1,
+    "max": 1,
+    "cells": [
+        {
+            "position": {
+                "x": 0,
+                "y": 0 
+            },
+            "tiles": [
+                {
+                    "name": "spawn_tile_1",
+                    "x": 1,
+                    "y": 1,
+                    "entities": [
+                        { "id": "spawn_panel" }
+                    ]
+                },
+                {
+                    "name": "spawn_tile_2",
+                    "x": 1,
+                    "y": 3,
+                    "entities": [
+                        { "id": "spawn_panel" }
+                    ]
+                },
+                {
+                    "name": "spawn_tile_3",
+                    "x": 3,
+                    "y": 1,
+                    "entities": [
+                        { "id": "spawn_panel" }
+                    ]
+                },
+                {
+                    "name": "spawn_tile_4", 
+                    "x": 3,
+                    "y": 3,
+                    "entities": [
+                        { "id": "spawn_panel" }
+                    ]
+                }
+            ]
+        }
+    ]
+}
