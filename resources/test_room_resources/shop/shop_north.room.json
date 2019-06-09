@@ -1,6 +1,9 @@
 {
     "name": "shop_north",
     "category": "shop",
+    "attributes": {
+        "hasBlockingDoor": true
+    },
     "cells": [
         {
             "position": {

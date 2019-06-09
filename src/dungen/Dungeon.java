@@ -1,7 +1,6 @@
 package dungen;
 
 import java.util.ArrayList;
-
 import dungen.printing.DefaultTileColourPicker;
 import dungen.printing.DungeonPrinter;
 import dungen.printing.ITileColourPicker;

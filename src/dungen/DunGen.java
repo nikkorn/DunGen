@@ -126,6 +126,9 @@ public class DunGen {
 	 * @return Whether the room can be generated at an anchor.
 	 */
 	private static boolean canRoomBeGenerated(RoomResources resources, Room room, Anchor anchor, RoomCountMap roomCounts, PositionedCellList cells) {
+		
+		// TODO Carry out room validation if there is a validator associated with the room.
+		
 		// Find the room group that the room is in (if there is one).
 		RoomGroup roomGroup = null;
 		for (RoomGroup group : resources.getRoomGroups()) {
@@ -204,7 +207,7 @@ public class DunGen {
 			// Get the absolute position of the cell.
 			Position cellPosition = new Position(x + cell.getLocalPosition().getX(), y + cell.getLocalPosition().getY());
 	
-			cells.add(new PositionedCell(cell, cellPosition, depth, roomInstanceId));		
+			cells.add(new PositionedCell(cell, cellPosition, depth, room, roomInstanceId));		
 		}
 	}
 	

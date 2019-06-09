@@ -1,6 +1,7 @@
 package dungen;
 
 import dungen.room.Cell;
+import dungen.room.Room;
 
 /**
  * Represents a positioned cell in a dungeon.
@@ -19,6 +20,10 @@ public class PositionedCell {
 	 */
 	private int depth;
 	/**
+	 * The room.
+	 */
+	private Room room;
+	/**
 	 * The room instance id.
 	 */
 	private String roomInstanceId;
@@ -28,12 +33,14 @@ public class PositionedCell {
 	 * @param cell The cell.
 	 * @param position The absolute cell position.
 	 * @param depth The depth at which the room was placed.
+	 * @param room The room.
 	 * @param roomInstanceId The room instance id.
 	 */
-	public PositionedCell(Cell cell, Position position, int depth, String roomInstanceId) {
+	public PositionedCell(Cell cell, Position position, int depth, Room room, String roomInstanceId) {
 		this.cell           = cell;
 		this.position       = position;
 		this.depth          = depth;
+		this.room           = room;
 		this.roomInstanceId = roomInstanceId;
 	}
 	
@@ -59,6 +66,14 @@ public class PositionedCell {
 	 */
 	public int getDepth() {
 		return depth;
+	}
+	
+	/**
+	 * Get the room.
+	 * @return The room.
+	 */
+	public Room getRoom() {
+		return this.room;
 	}
 
 	/**

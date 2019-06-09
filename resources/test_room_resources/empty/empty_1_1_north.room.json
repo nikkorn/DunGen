@@ -1,5 +1,8 @@
 {
     "name": "empty_1_1_north",
+    "attributes": {
+        "hasBlockingDoor": false
+    },
     "cells": [
         {
             "position": {

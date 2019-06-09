@@ -1,6 +1,10 @@
 {
     "name": "boss_cross_north",
     "category": "boss",
+    "attributes": {
+        "hasBlockingDoor": true
+    },
+    "validation": "RoomIsNotBlocked",
     "cells": [
         {
             "position": {
