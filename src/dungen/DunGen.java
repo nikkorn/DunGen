@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.UUID;
 import dungen.room.Anchor;
 import dungen.room.Cell;
+import dungen.room.IRoomValidator;
 import dungen.room.Room;
 import dungen.room.RoomGroup;
 import dungen.room.RoomResources;
@@ -64,7 +65,7 @@ public class DunGen {
 		RoomCountMap roomCounts = new RoomCountMap();
 		
 		// Add the spawn room to the centre of the dungeon, this should always be a success.
-		addRoom(0, 0, 0, resources.getRoom("spawn"), cells, roomCounts);
+		addRoom(null, 0, 0, 0, resources.getRoom("spawn"), cells, roomCounts);
 		
 		// Keep track of the number of times we have attempted to add a room and failed.
 		int roomGenerationFailureCount = 0;
@@ -85,7 +86,7 @@ public class DunGen {
 			// Randomly pick a generatable room definition.
 			Room generatableRoom = null;
 			for (Room room : attachableRooms) {
-				if (canRoomBeGenerated(resources, room, anchor, roomCounts, cells)) {
+				if (canRoomBeGenerated(configuration, resources, room, anchor, roomCounts, cells)) {
 					// We found a room that can be generated!
 					generatableRoom = room;
 					
@@ -96,7 +97,7 @@ public class DunGen {
 			// Generate a room if we have a valid generatable room definition.
 			if (generatableRoom != null) {
 				// Add the room.
-				addRoom(anchor.getPosition().getX(), anchor.getPosition().getY(), anchor.getDepth(), generatableRoom, cells, roomCounts);
+				addRoom(anchor, anchor.getPosition().getX(), anchor.getPosition().getY(), anchor.getDepth(), generatableRoom, cells, roomCounts);
 
 				// Reset the room generation failure count now that we have had a success.
 				roomGenerationFailureCount = 0;
@@ -118,6 +119,7 @@ public class DunGen {
 
 	/**
 	 * Get whether the room can be generated at an anchor.
+	 * @param configuration The configuration.
 	 * @param resources The room resources.
 	 * @param room The room to add.
 	 * @param anchor The anchor.
@@ -125,9 +127,22 @@ public class DunGen {
 	 * @param cells The existing placed dungeon cells.
 	 * @return Whether the room can be generated at an anchor.
 	 */
-	private static boolean canRoomBeGenerated(RoomResources resources, Room room, Anchor anchor, RoomCountMap roomCounts, PositionedCellList cells) {
-		
-		// TODO Carry out room validation if there is a validator associated with the room.
+	private static boolean canRoomBeGenerated(DunGenConfiguration configuration, RoomResources resources, Room room, Anchor anchor, RoomCountMap roomCounts, PositionedCellList cells) {
+		// Carry out room validation if there is a validator associated with the room.
+		if (room.getValidator() != null) {
+			// Get the room validator.
+			IRoomValidator validator = configuration.getRoomValidator(room.getValidator());
+			
+			// The validator has to have been defined!
+			if (validator == null) {
+				throw new RuntimeException("The room validator'" + room.getValidator() + "' has not been defined as part of the configuration");
+			}
+			
+			// Validate whether we can generate the room based on user-defined validation.
+			if (!validator.validate(room, anchor.getRoomRoute())) {
+				return false;
+			}
+		}
 		
 		// Find the room group that the room is in (if there is one).
 		RoomGroup roomGroup = null;
@@ -185,6 +200,7 @@ public class DunGen {
 	
 	/**
 	 * Add a room to the dungeon.
+	 * @param anchor The anchor to attach the room to.
 	 * @param x The absolute x position at which to place the room entrance cell.
 	 * @param y The absolute y position at which to place the room entrance cell.
 	 * @param depth The depth at which the room is being added.
@@ -192,7 +208,7 @@ public class DunGen {
 	 * @param cells The existing placed dungeon cells.
 	 * @param roomCounts The counts of the generated rooms.
 	 */
-	private static void addRoom(int x, int y, int depth, Room room, PositionedCellList cells, RoomCountMap roomCounts) {
+	private static void addRoom(Anchor anchor, int x, int y, int depth, Room room, PositionedCellList cells, RoomCountMap roomCounts) {
 		// Add a room count entry for this room.
 		roomCounts.incrementCount(room.getName());
 
@@ -207,7 +223,7 @@ public class DunGen {
 			// Get the absolute position of the cell.
 			Position cellPosition = new Position(x + cell.getLocalPosition().getX(), y + cell.getLocalPosition().getY());
 	
-			cells.add(new PositionedCell(cell, cellPosition, depth, room, roomInstanceId));		
+			cells.add(new PositionedCell(anchor, cell, cellPosition, depth, room, roomInstanceId));		
 		}
 	}
 	
@@ -229,19 +245,19 @@ public class DunGen {
 			int nextRoomDepth = positionedCell.getDepth() + 1;
 			
 			if (positionedCell.getCell().isJoinableAt(Direction.NORTH) && !cells.isCellAt(cellX, cellY + 1)) {
-				anchors.add(new Anchor(new Position(cellX, cellY + 1), Direction.SOUTH, nextRoomDepth));
+				anchors.add(new Anchor(positionedCell.getRoom(), positionedCell.getAnchor(), new Position(cellX, cellY + 1), Direction.SOUTH, nextRoomDepth));
 			}
 			
 			if (positionedCell.getCell().isJoinableAt(Direction.SOUTH) && !cells.isCellAt(cellX, cellY - 1)) {
-				anchors.add(new Anchor(new Position(cellX, cellY - 1), Direction.NORTH, nextRoomDepth));
+				anchors.add(new Anchor(positionedCell.getRoom(), positionedCell.getAnchor(), new Position(cellX, cellY - 1), Direction.NORTH, nextRoomDepth));
 			}
 			
 			if (positionedCell.getCell().isJoinableAt(Direction.WEST) && !cells.isCellAt(cellX - 1, cellY)) {
-				anchors.add(new Anchor(new Position(cellX - 1, cellY), Direction.EAST, nextRoomDepth));
+				anchors.add(new Anchor(positionedCell.getRoom(), positionedCell.getAnchor(), new Position(cellX - 1, cellY), Direction.EAST, nextRoomDepth));
 			}
 			
 			if (positionedCell.getCell().isJoinableAt(Direction.EAST) && !cells.isCellAt(cellX + 1, cellY)) {
-				anchors.add(new Anchor(new Position(cellX + 1, cellY), Direction.WEST, nextRoomDepth));
+				anchors.add(new Anchor(positionedCell.getRoom(), positionedCell.getAnchor(), new Position(cellX + 1, cellY), Direction.WEST, nextRoomDepth));
 			}
 		}
 		

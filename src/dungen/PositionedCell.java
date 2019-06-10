@@ -1,5 +1,6 @@
 package dungen;
 
+import dungen.room.Anchor;
 import dungen.room.Cell;
 import dungen.room.Room;
 
@@ -7,6 +8,10 @@ import dungen.room.Room;
  * Represents a positioned cell in a dungeon.
  */
 public class PositionedCell {
+	/**
+	 * The anchor linking the cell to a parent room.
+	 */
+	private Anchor anchor;
 	/**
 	 * The cell.
 	 */
@@ -30,18 +35,28 @@ public class PositionedCell {
 	
 	/**
 	 * Create a new instance of the PositionedCell class.
+	 * @param anchor The anchor linking the cell to a parent room.
 	 * @param cell The cell.
 	 * @param position The absolute cell position.
 	 * @param depth The depth at which the room was placed.
 	 * @param room The room.
 	 * @param roomInstanceId The room instance id.
 	 */
-	public PositionedCell(Cell cell, Position position, int depth, Room room, String roomInstanceId) {
+	public PositionedCell(Anchor anchor, Cell cell, Position position, int depth, Room room, String roomInstanceId) {
+		this.anchor         = anchor;
 		this.cell           = cell;
 		this.position       = position;
 		this.depth          = depth;
 		this.room           = room;
 		this.roomInstanceId = roomInstanceId;
+	}
+	
+	/**
+	 * Get the anchor.
+	 * @return The anchor.
+	 */
+	public Anchor getAnchor() {
+		return this.anchor;
 	}
 	
 	/**

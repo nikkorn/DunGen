@@ -20,6 +20,12 @@ public class RoomFactory {
 		// Get the room name.
 		String name = object.getString("name");
 		
+		// Get the room attributes.
+		JSONObject attributes = object.has("attributes") ? object.getJSONObject("attributes") : new JSONObject();
+		
+		// Get the room validator.
+		String validator = object.has("validator") ? object.getString("validator") : null;
+				
 		// Get the minimum/maximum generation count.
 		Integer minimum = object.has("minimum") ? object.getInt("minimum") : null;
 		Integer maximum = object.has("maximum") ? object.getInt("maximum") : null;
@@ -41,7 +47,7 @@ public class RoomFactory {
 			cells.add(createRoomCell(cellsJsonArray.getJSONObject(cellIndex)));
 		}
 		
-		return new Room(name, minimum, maximum, chance, depth, cells);
+		return new Room(name, attributes, validator, minimum, maximum, chance, depth, cells);
 	}
 	
 	/**

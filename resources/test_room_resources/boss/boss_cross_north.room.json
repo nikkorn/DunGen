@@ -4,7 +4,7 @@
     "attributes": {
         "hasBlockingDoor": true
     },
-    "validation": "RoomIsNotBlocked",
+    "validator": "RoomIsNotBlocked",
     "cells": [
         {
             "position": {

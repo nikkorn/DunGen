@@ -1,6 +1,5 @@
 package dungen;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import dungen.room.IRoomValidator;

@@ -1,5 +1,7 @@
 package dungen.room;
 
+import java.util.ArrayList;
+
 import dungen.Direction;
 import dungen.Position;
 
@@ -8,6 +10,14 @@ import dungen.Position;
  * room entrance cell can be attach to a placed non-blocked room cell. 
  */
 public class Anchor {
+	/**
+	 * The room that the anchor connects to.
+	 */
+	private Room room;
+	/**
+	 * The parent anchor.
+	 */
+	private Anchor parent;
 	/**
 	 * The anchor position.
 	 */
@@ -23,14 +33,34 @@ public class Anchor {
 	
 	/**
 	 * Create a new instance of the Anchor class.
+	 * @paran room The room that the anchor connects to.
+	 * @param parent The parent anchor.
 	 * @param position The anchor position.
 	 * @param joinDirection The direction at which to join the anchored cell.
 	 * @param depth The depth of the room that the anchor is attached to.
 	 */
-	public Anchor(Position position, Direction joinDirection, int depth) {
+	public Anchor(Room room, Anchor parent, Position position, Direction joinDirection, int depth) {
+		this.room          = room;
+		this.parent        = parent;
 		this.position      = position;
 		this.joinDirection = joinDirection;
 		this.depth         = depth;
+	}
+	
+	/**
+	 * Gets the parent anchor.
+	 * @return The parent anchor.
+	 */
+	public Anchor getParentAnchor() {
+		return this.parent;
+	}
+	
+	/**
+	 * Gets the room that the anchor is connected to.
+	 * @return The room that the anchor is connected to.
+	 */
+	public Room getConnectedRoom() {
+		return this.room;
 	}
 
 	/**
@@ -75,5 +105,25 @@ public class Anchor {
 		
 		// The anchor depth is within the specified depth range.
 		return true;
+	}
+	
+	/**
+	 * Get the route of rooms from the anchor to the spawn as an array.
+	 * @return The route of rooms from the anchor to the spawn as an array.
+	 */
+	public Room[] getRoomRoute() {
+		ArrayList<Room> rooms = new ArrayList<Room>();
+		Anchor current        = this.parent;
+		
+		do {
+			// Add the room for the current anchor to the list of rooms.
+			rooms.add(current.getConnectedRoom());
+			
+			// Attempt to get the next anchor to process.
+			current = current.getParentAnchor();
+		} while (current != null);
+		
+		// Return the list of rooms as an immutable array.
+		return rooms.toArray(new Room[rooms.size()]);
 	}
 }
