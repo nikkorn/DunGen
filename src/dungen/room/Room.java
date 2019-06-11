@@ -7,7 +7,7 @@ import dungen.Direction;
 /**
  * Represents a generatable room.
  */
-public class Room {
+public class Room implements IValidatableRoom {
 	/**
 	 * The room name.
 	 */

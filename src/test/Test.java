@@ -8,7 +8,7 @@ import dungen.Dungeon;
 import dungen.printing.DungeonPrinter;
 import dungen.printing.ITileColourPicker;
 import dungen.room.IRoomValidator;
-import dungen.room.Room;
+import dungen.room.IValidatableRoom;
 import dungen.tile.Tile;
 
 /**
@@ -23,7 +23,7 @@ public class Test {
 		// Add a room validator for the boss room, as we cannot have any blocked rooms between it and the spawn.
 		config.addRoomValidator("RoomIsNotBlocked", new IRoomValidator() {
 			@Override
-			public boolean validate(Room next, Room[] route) {
+			public boolean validate(IValidatableRoom next, IValidatableRoom[] route) {
 				// TODO Auto-generated method stub
 				return true;
 			}
