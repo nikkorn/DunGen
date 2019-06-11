@@ -113,7 +113,7 @@ public class Anchor {
 	 */
 	public Room[] getRoomRoute() {
 		ArrayList<Room> rooms = new ArrayList<Room>();
-		Anchor current        = this.parent;
+		Anchor current        = this;
 		
 		do {
 			// Add the room for the current anchor to the list of rooms.

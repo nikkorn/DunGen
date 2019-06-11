@@ -128,22 +128,6 @@ public class DunGen {
 	 * @return Whether the room can be generated at an anchor.
 	 */
 	private static boolean canRoomBeGenerated(DunGenConfiguration configuration, RoomResources resources, Room room, Anchor anchor, RoomCountMap roomCounts, PositionedCellList cells) {
-		// Carry out room validation if there is a validator associated with the room.
-		if (room.getValidator() != null) {
-			// Get the room validator.
-			IRoomValidator validator = configuration.getRoomValidator(room.getValidator());
-			
-			// The validator has to have been defined!
-			if (validator == null) {
-				throw new RuntimeException("The room validator'" + room.getValidator() + "' has not been defined as part of the configuration");
-			}
-			
-			// Validate whether we can generate the room based on user-defined validation.
-			if (!validator.validate(room, anchor.getRoomRoute())) {
-				return false;
-			}
-		}
-		
 		// Find the room group that the room is in (if there is one).
 		RoomGroup roomGroup = null;
 		for (RoomGroup group : resources.getRoomGroups()) {
@@ -190,6 +174,22 @@ public class DunGen {
 			
 			// If the cell position is already taken then we cannot generate the room.
 			if (cells.isCellAt(new Position(cellPositionX, cellPositionY))) {
+				return false;
+			}
+		}
+		
+		// Carry out room validation if there is a validator associated with the room.
+		if (room.getValidator() != null) {
+			// Get the room validator.
+			IRoomValidator validator = configuration.getRoomValidator(room.getValidator());
+			
+			// The validator has to have been defined!
+			if (validator == null) {
+				throw new RuntimeException("The room validator'" + room.getValidator() + "' has not been defined as part of the configuration");
+			}
+			
+			// Validate whether we can generate the room based on user-defined validation.
+			if (!validator.validate(room, anchor.getRoomRoute())) {
 				return false;
 			}
 		}
