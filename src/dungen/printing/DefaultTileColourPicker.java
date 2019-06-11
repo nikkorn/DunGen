@@ -1,6 +1,6 @@
 package dungen.printing;
 
-import dungen.tile.Tile;
+import dungen.tile.ITileDetails;
 
 /**
  * The default tile colour picker instance to use.
@@ -8,7 +8,7 @@ import dungen.tile.Tile;
 public class DefaultTileColourPicker implements ITileColourPicker  {
 
 	@Override
-	public int getTileColour(Tile tile) {
+	public int getTileColour(ITileDetails tile) {
 		switch (tile.getType()) {
 			case EMPTY:
 				return DungeonPrinter.createColour(100, 100, 100);

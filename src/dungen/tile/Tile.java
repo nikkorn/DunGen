@@ -2,16 +2,23 @@ package dungen.tile;
 
 import java.util.ArrayList;
 import dungen.Direction;
+import dungen.PositionedCell;
+import dungen.room.IRoomDetails;
+import dungen.room.Room;
 import org.json.JSONObject;
 
 /**
  * Represents a tile in the dungeon.
  */
-public class Tile {
+public class Tile implements ITileDetails {
 	/**
 	 * The base tile type.
 	 */
 	private TileType type;
+	/**
+	 * The room that the tile is in.
+	 */
+	private Room room;
 	/**
 	 * The tile position.
 	 */
@@ -42,13 +49,14 @@ public class Tile {
 	 * @param type The tile type.
 	 * @param x The tile x position.
 	 * @param y The tile y position.
-	 * @param depth The depth of the tile as the number of rooms that were passed through to reach it.
+	 * @param cell The positioned cell the tile resides in.
 	 */
-	public Tile(TileType type, int x, int y, int depth) {
+	public Tile(TileType type, int x, int y, PositionedCell cell) {
 		this.type  = type;
 		this.x     = x;
 		this.y     = y;
-		this.depth = depth;
+		this.depth = cell.getDepth();
+		this.room  = cell.getRoom();
 	}
 
 	/**
@@ -118,4 +126,10 @@ public class Tile {
 	 * @param value The additional tile attributes.
 	 */
 	public void setAttributes(JSONObject value) { this.attributes = value; }
+
+	/**
+	 * Gets the details of the room that the tile resides in.
+	 * @return The details of the room that the tile resides in.
+	 */
+	public IRoomDetails getRoomDetails() { return this.room; }
 }

@@ -11,5 +11,5 @@ public interface IRoomValidator {
 	 * @param route The route of already generated rooms from the spawn.
 	 * @return Whether this room can be generated.
 	 */
-	public boolean validate(IValidatableRoom next, IValidatableRoom[] route);
+	public boolean validate(IRoomDetails next, IRoomDetails[] route);
 }

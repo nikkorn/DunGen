@@ -1,6 +1,6 @@
 package dungen.printing;
 
-import dungen.tile.Tile;
+import dungen.tile.ITileDetails;
 
 /**
  * Represents a provider of colours to use in printing tiles.
@@ -12,5 +12,5 @@ public interface ITileColourPicker {
 	 * @param tile The tile.
 	 * @return An integer value representing the colour to use in drawing the given tile.
 	 */
-	public int getTileColour(Tile tile);
+	public int getTileColour(ITileDetails tile);
 }

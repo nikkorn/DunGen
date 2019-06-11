@@ -38,14 +38,14 @@ public class TileGenerator {
 			// Create a wall tile for each tile position around the cell.
 			for (int tileX = tileXMin - 1; tileX <= tileXMax; tileX++) {
 				for (int tileY = tileYMin - 1; tileY <= tileYMax; tileY++) {
-					tileMap.put(new Position(tileX, tileY), new Tile(TileType.WALL, tileX, tileY, cell.getDepth()));
+					tileMap.put(new Position(tileX, tileY), new Tile(TileType.WALL, tileX, tileY, cell));
 				}
 			}
 			
 			// Create an empty tile for each tile position in the cell.
 			for (int tileX = tileXMin; tileX < tileXMax; tileX++) {
 				for (int tileY = tileYMin; tileY < tileYMax; tileY++) {
-					tileMap.put(new Position(tileX, tileY), new Tile(TileType.EMPTY, tileX, tileY, cell.getDepth()));
+					tileMap.put(new Position(tileX, tileY), new Tile(TileType.EMPTY, tileX, tileY, cell));
 				}
 			}
 			
@@ -55,7 +55,7 @@ public class TileGenerator {
 				Position entrancePosition = getEntrancePosition(cell.getCell().getEntrance().getDirection(), tileXMin, tileYMin, tileXMax, tileYMax);
 				
 				// Create the entrance tile.
-				Tile entrance = new Tile(TileType.ENTRANCE, entrancePosition.getX(), entrancePosition.getY(), cell.getDepth());
+				Tile entrance = new Tile(TileType.ENTRANCE, entrancePosition.getX(), entrancePosition.getY(), cell);
 			
 				// Get the entrance attributes and add them to the tile.
 				entrance.setAttributes(cell.getCell().getEntrance().getAttributes());
@@ -71,7 +71,7 @@ public class TileGenerator {
 			if (areRoomCellsBridged(cells, cell, Direction.NORTH)) {
 				// Create an empty tile for each tile position between the two bridged cells.
 				for (int tileX = tileXMin; tileX < tileXMax; tileX++) {
-					tileMap.put(new Position(tileX, tileYMax), new Tile(TileType.EMPTY, tileX, tileYMax, cell.getDepth()));
+					tileMap.put(new Position(tileX, tileYMax), new Tile(TileType.EMPTY, tileX, tileYMax, cell));
 				}
 			}
 			
@@ -79,7 +79,7 @@ public class TileGenerator {
 			if (areRoomCellsBridged(cells, cell, Direction.SOUTH)) {
 				// Create an empty tile for each tile position between the two bridged cells.
 				for (int tileX = tileXMin; tileX < tileXMax; tileX++) {
-					tileMap.put(new Position(tileX, tileYMin - 1), new Tile(TileType.EMPTY, tileX, tileYMin - 1, cell.getDepth()));
+					tileMap.put(new Position(tileX, tileYMin - 1), new Tile(TileType.EMPTY, tileX, tileYMin - 1, cell));
 				}
 			}
 			
@@ -87,7 +87,7 @@ public class TileGenerator {
 			if (areRoomCellsBridged(cells, cell, Direction.WEST)) {
 				// Create an empty tile for each tile position between the two bridged cells.
 				for (int tileY = tileYMin; tileY < tileYMax; tileY++) {
-					tileMap.put(new Position(tileXMin - 1, tileY), new Tile(TileType.EMPTY, tileXMin - 1, tileY, cell.getDepth()));
+					tileMap.put(new Position(tileXMin - 1, tileY), new Tile(TileType.EMPTY, tileXMin - 1, tileY, cell));
 				}
 			}
 			
@@ -95,7 +95,7 @@ public class TileGenerator {
 			if (areRoomCellsBridged(cells, cell, Direction.EAST)) {
 				// Create an empty tile for each tile position between the two bridged cells.
 				for (int tileY = tileYMin; tileY < tileYMax; tileY++) {
-					tileMap.put(new Position(tileXMax, tileY), new Tile(TileType.EMPTY, tileXMax, tileY, cell.getDepth()));
+					tileMap.put(new Position(tileXMax, tileY), new Tile(TileType.EMPTY, tileXMax, tileY, cell));
 				}
 			}
 						

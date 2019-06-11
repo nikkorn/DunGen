@@ -3,9 +3,9 @@ package dungen.room;
 import org.json.JSONObject;
 
 /**
- * Represents a validatable room.
+ * Represents details of a room.
  */
-public interface IValidatableRoom {
+public interface IRoomDetails {
 	
 	/**
 	 * Gets the name of the room.
