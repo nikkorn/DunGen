@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import dungen.printing.DefaultTileColourPicker;
 import dungen.printing.DungeonPrinter;
 import dungen.printing.ITileColourPicker;
+import dungen.tile.ITileDetails;
 import dungen.tile.Tile;
 
 /**
@@ -33,7 +34,7 @@ public class Dungeon {
 	 * Get the dungeon tiles.
 	 * @return The dungeon tiles.
 	 */
-	public ArrayList<Tile> getTiles() { return this.tiles; }
+	public ArrayList<? extends ITileDetails> getTiles() { return this.tiles; }
 
 	/**
 	 * Get the configuration used in generating this dungeon.

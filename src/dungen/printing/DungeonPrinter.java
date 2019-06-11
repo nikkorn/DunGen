@@ -4,9 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
 import dungen.Dungeon;
-import dungen.tile.Tile;
+import dungen.tile.ITileDetails;
 
 /**
  * Prints a dungeon to an image.
@@ -28,7 +27,7 @@ public class DungeonPrinter {
 		BufferedImage image = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
 		
 		// Generate each static tile and draw it to our image.
-		for (Tile tile : dungeon.getTiles()) {
+		for (ITileDetails tile : dungeon.getTiles()) {
 			// Get the pixel x/y based on the tile position.
 			int x = tile.getX() + offset;
 			int y = tile.getY() + offset;
