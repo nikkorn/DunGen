@@ -1,5 +1,6 @@
 package dungen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -11,9 +12,13 @@ public class Cell {
 	 */
 	private String type;
 	/**
-	 * The additional cell details.
+	 * The additional cell attributes.
 	 */
-	private HashMap<String, String> details = new HashMap<String, String>();
+	private HashMap<String, String> attributes = new HashMap<String, String>();
+	/**
+	 * The list of entities linked to the cell.
+	 */
+	private ArrayList<CellEntity> entities = new ArrayList<CellEntity>();
 	/**
 	 * Whether the cell is frozen.
 	 */
@@ -22,19 +27,23 @@ public class Cell {
 	/**
 	 * Creates a new instance of the Cell class.
 	 * @param type The cell type.
-	 * @param details The cell details.
+	 * @param attributes The cell attributes.
 	 */
-	public Cell(String type, HashMap<String, String> details) {
-		this.type    = type;
-		this.details = details;
+	public Cell(String type, HashMap<String, String> attributes) {
+		this.type       = type;
+		this.attributes = attributes;
 	}
 
 	public String getType() {
 		return type;
 	}
 
-	public HashMap<String, String> getDetails() {
-		return details;
+	public HashMap<String, String> getAttributes() {
+		return attributes;
+	}
+
+	public ArrayList<CellEntity> getEntities() {
+		return entities;
 	}
 
 	public boolean isFrozen() {
