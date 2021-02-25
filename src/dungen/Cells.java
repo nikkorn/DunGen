@@ -7,7 +7,7 @@ public class Cells {
 	/**
 	 * The singleton out-of-bounds cell.
 	 */
-	public static final Cell OUT_OF_BOUNDS = new Cell("OOB", null, null);
+	public static final Cell OUT_OF_BOUNDS = new Cell("OOB");
 	/**
 	 * The width/height of the cells map.
 	 */
@@ -39,7 +39,7 @@ public class Cells {
 	public void set(String type, HashMap<String, String> attributes, ArrayList<CellEntity> entities, int x, int y, int width, int height) {
 		for (int posX = x; posX < (x + width); posX++) {
 			for (int posY = y; posY < (y + height); posY++) {
-				this.cells.put(getKey(posX, posY), new Cell(type, attributes == null ? new HashMap<String, String>() : attributes, entities == null ? new ArrayList<CellEntity>() : entities));
+				this.cells.put(getKey(posX, posY), new Cell(type, attributes, entities));
 			}
 		}
 	}

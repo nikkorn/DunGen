@@ -5,24 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f14bc88c-9c96-4eaf-811f-431628f0c83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dungen/pattern/ApplicationCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dungen/pattern/MatchCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/CellEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/CellEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/CORRIDOR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/ENEMY.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/ENEMY_STRONG.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/EXIT_DOOR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/FAKE_WALL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/ROOM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/SPAWN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/UNKNOWN_CELL_TYPE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell_images/WALL.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/Cells.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/Cells.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/DungeonGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/DungeonGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/PatternApplicator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/PatternApplicator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/PatternCell.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/Sequence.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/Sequence.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/ApplicationCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/ApplicationCell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/visualiser/ResultsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/visualiser/ResultsFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/visualiser/VisualiserFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/visualiser/VisualiserFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dungen/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungen/CellEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/CellEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dungen/Cells.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/Cells.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungen/DungeonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/DungeonGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungen/pattern/PatternApplicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/pattern/PatternApplicator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungen/pattern/PatternCell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungen/pattern/Sequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/pattern/Sequence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tester.dungen" beforeDir="false" afterPath="$PROJECT_DIR$/tester.dungen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dungen/pattern/ApplicationCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/pattern/ApplicationCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visualiser/ResultsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualiser/ResultsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visualiser/VisualiserFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualiser/VisualiserFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tester.dungen" beforeDir="false" afterPath="$PROJECT_DIR$/tester.dungen.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,21 +90,60 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614242453377" />
-    <state width="1882" height="278" key="GridCell.Tab.0.bottom" timestamp="1613870287467">
+    <state width="391" height="466" key="DebuggerActiveHint" timestamp="1614256629283">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="278" key="GridCell.Tab.0.bottom/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1613870287467" />
-    <state width="1882" height="278" key="GridCell.Tab.0.center" timestamp="1613870287466">
+    <state width="391" height="466" key="DebuggerActiveHint/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614256629283" />
+    <state width="1882" height="82" key="GridCell.Tab.0.bottom" timestamp="1614257043270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="278" key="GridCell.Tab.0.center/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1613870287466" />
-    <state width="1882" height="278" key="GridCell.Tab.0.left" timestamp="1613870287466">
+    <state width="1882" height="82" key="GridCell.Tab.0.bottom/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614257043270" />
+    <state width="1882" height="82" key="GridCell.Tab.0.center" timestamp="1614257043270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="278" key="GridCell.Tab.0.left/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1613870287466" />
-    <state width="1882" height="278" key="GridCell.Tab.0.right" timestamp="1613870287467">
+    <state width="1882" height="82" key="GridCell.Tab.0.center/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614257043270" />
+    <state width="1882" height="82" key="GridCell.Tab.0.left" timestamp="1614257043270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="278" key="GridCell.Tab.0.right/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1613870287467" />
+    <state width="1882" height="82" key="GridCell.Tab.0.left/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614257043270" />
+    <state width="1882" height="82" key="GridCell.Tab.0.right" timestamp="1614257043270">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="82" key="GridCell.Tab.0.right/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614257043270" />
+    <state width="1882" height="279" key="GridCell.Tab.1.bottom" timestamp="1614256674590">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="279" key="GridCell.Tab.1.bottom/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614256674590" />
+    <state width="1882" height="279" key="GridCell.Tab.1.center" timestamp="1614256674590">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="279" key="GridCell.Tab.1.center/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614256674590" />
+    <state width="1882" height="279" key="GridCell.Tab.1.left" timestamp="1614256674590">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="279" key="GridCell.Tab.1.left/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614256674590" />
+    <state width="1882" height="279" key="GridCell.Tab.1.right" timestamp="1614256674590">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1882" height="279" key="GridCell.Tab.1.right/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614256674590" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1614244913501">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614244913501" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1614245503077">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614245503077" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/src/visualiser/ResultsFrame.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

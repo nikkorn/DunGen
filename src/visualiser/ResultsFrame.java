@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import dungen.Cell;
+import dungen.CellEntity;
 import dungen.Result;
 
 /**
@@ -21,6 +22,11 @@ public class ResultsFrame extends JPanel {
 	 * The results.
 	 */
 	private Result result;
+	/**
+	 * The cell image cache
+	 */
+	HashMap<String, BufferedImage> cellImages = new HashMap<String, BufferedImage>();
+
 
 	/**
 	 * Creates a new instance of the ResultsFrame class.
@@ -41,17 +47,7 @@ public class ResultsFrame extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-		HashMap<String, BufferedImage> cellTypeImages = new HashMap<String, BufferedImage>();
-		try {
-			cellTypeImages.put("UNKNOWN_CELL_TYPE", ImageIO.read(new File("cell_images/UNKNOWN_CELL_TYPE.png")));
-			cellTypeImages.put("WALL", ImageIO.read(new File("cell_images/WALL.png")));
-			cellTypeImages.put("ROOM", ImageIO.read(new File("cell_images/ROOM.png")));
-			cellTypeImages.put("CORRIDOR", ImageIO.read(new File("cell_images/CORRIDOR.png")));
-		} catch (IOException e) {
-			System.out.println("cannot open default cell images in cell_images!");
-		}
-        
-        // Draw each pixel to the display.
+        // Draw each cell to the display.
         for (int y = 0; y < result.getConfiguration().height; y++) {
         	for (int x = 0; x < result.getConfiguration().width; x++) {
         		// Get the current cell.
@@ -61,10 +57,19 @@ public class ResultsFrame extends JPanel {
     			String cellType = cell.getType().toUpperCase();
     			
     			// Get the image for the cell type.
-    			BufferedImage cellImage = getCellTypeImage(cellType, cellTypeImages);
+    			BufferedImage cellTypeImage = getCellImage(cellType);
     			
     			// Draw the cell image.
-    			g.drawImage(cellImage, x * Constants.RESULTS_FRAME_CELL_SIZE, y * Constants.RESULTS_FRAME_CELL_SIZE, Constants.RESULTS_FRAME_CELL_SIZE, Constants.RESULTS_FRAME_CELL_SIZE, null);
+    			g.drawImage(cellTypeImage, x * Constants.RESULTS_FRAME_CELL_SIZE, y * Constants.RESULTS_FRAME_CELL_SIZE, Constants.RESULTS_FRAME_CELL_SIZE, Constants.RESULTS_FRAME_CELL_SIZE, null);
+
+    			// Draw each cell entity.
+    			for (CellEntity entity : cell.getEntities()) {
+					// Get the image for the cell entity.
+					BufferedImage cellEntityImage = getCellImage(entity.getName());
+
+					// Draw the cell entity image.
+					g.drawImage(cellEntityImage, x * Constants.RESULTS_FRAME_CELL_SIZE, y * Constants.RESULTS_FRAME_CELL_SIZE, Constants.RESULTS_FRAME_CELL_SIZE, Constants.RESULTS_FRAME_CELL_SIZE, null);
+				}
             }        	
         }
     }
@@ -86,37 +91,26 @@ public class ResultsFrame extends JPanel {
 		
 		return display;
 	}
-	
+
 	/**
-	 * Gets the cell image for a cell image type.
-	 * @param type
-	 * @param cellTypeImages
+	 * Gets the cell image.
+	 * @param name The name.
 	 * @return
 	 */
-	private BufferedImage getCellTypeImage(String type, HashMap<String, BufferedImage> cellTypeImages) {
-		// Do we already have the cell type image cached?
-		if (cellTypeImages.containsKey(type)) {
-			return cellTypeImages.get(type);
+	private BufferedImage getCellImage(String name) {
+		if (this.cellImages.containsKey(name.toUpperCase())) {
+			return this.cellImages.get(name.toUpperCase());
 		}
-		
-		// Grab a file handle for the image, which may not exist.
-		File imageFile = new File("cell_images/" + type + ".png");
-		
-		// If no image exists for the cell type then just return the default unknown cell image.
-		if (!imageFile.exists()) {
-			System.out.println("cannot find cell image for cell type '" + type + "' in cell_images!");
-			cellTypeImages.put(type, cellTypeImages.get("UNKNOWN_CELL_TYPE"));
-		} else {
-			BufferedImage cellImage;
-			try {
-				cellImage = ImageIO.read(imageFile);
-			} catch (IOException e) {
-				System.out.println("cannot open cell image for cell type '" + type + "' in cell_images!");
-				cellImage = cellTypeImages.get("UNKNOWN_CELL_TYPE");
-			}
-			cellTypeImages.put(type, cellImage);
+
+		try {
+			BufferedImage image = ImageIO.read(new File("images/" + name.toUpperCase() + ".png"));
+
+			this.cellImages.put(name.toUpperCase(), image);
+
+			return image;
+		} catch (IOException e) {
+			System.out.println("cannot open cell image '" + name.toUpperCase() + "' in images!");
+			return getCellImage("UNKNOWN");
 		}
-		
-		return cellTypeImages.get(type);
 	}
 }

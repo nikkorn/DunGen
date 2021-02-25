@@ -28,12 +28,21 @@ public class Cell {
 	 * Creates a new instance of the Cell class.
 	 * @param type The cell type.
 	 * @param attributes The cell attributes.
-	 *
+	 * @param entities The cell entities.
 	 */
 	public Cell(String type, HashMap<String, String> attributes, ArrayList<CellEntity> entities) {
 		this.type       = type;
-		this.attributes = attributes;
-		this.entities   = entities;
+		this.attributes = attributes == null ? new HashMap<String, String>() : attributes;
+		this.entities   = entities == null ? new ArrayList<CellEntity>() : entities;
+	}
+
+	/**
+	 * Creates a new instance of the Cell class.
+	 * @param type The cell type.
+	 *
+	 */
+	public Cell(String type) {
+		this(type, null, null);
 	}
 
 	public String getType() {

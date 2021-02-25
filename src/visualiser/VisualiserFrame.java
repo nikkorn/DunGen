@@ -186,7 +186,7 @@ public class VisualiserFrame extends JFrame {
      * Handler for clicks of the 'Open File' button.
      */
     private void onOpenFileButtonClick() {
-    	FileNameExtensionFilter filter = new FileNameExtensionFilter("Dungen definition file", "dungen");
+    	FileNameExtensionFilter filter = new FileNameExtensionFilter("DunGen Definition File", "json");
     	JFileChooser fileChooser = new JFileChooser();
     	fileChooser.setFileFilter(filter);
     	fileChooser.setCurrentDirectory(new File("."));
@@ -207,7 +207,7 @@ public class VisualiserFrame extends JFrame {
     	    	this.patternsField.setText(configFileJSON.getJSONArray("patterns").toString(4));
     	    	this.setTitle("DunGen Editor - " + configFileJSON.getString("name"));
     	    } catch (Exception e) {
-    	    	JOptionPane.showMessageDialog(this, "not a valid .dungen file: " + e.getMessage());
+    	    	JOptionPane.showMessageDialog(this, "not a valid json file: " + e.getMessage());
     	    }
     	}
     }

@@ -30,7 +30,7 @@ public class ApplicationCell {
     /**
      * The list of entities linked to the cell.
      */
-    private ArrayList<CellEntity> entities;
+    private ArrayList<CellEntity> entities = new ArrayList<CellEntity>();
 
     /**
      * Creates a new instance of the ApplicationCell class.
@@ -69,8 +69,8 @@ public class ApplicationCell {
     }
 
     /**
-     * Deserialise a PatternCell object from a JSON array.
-     * The array will be structured like [xOffset, yOffet, name, { detail: value }] where the fourth element is optional.
+     * Deserialise a ApplicationCell object from a JSON array.
+     * The array will be structured like [xOffset, yOffset, name, [{ name: some-entity-name }], { some-cell-attribute: value }] where the fourth and fifth elements are optional.
      * @param cellJson The JSON array.
      * @return
      */
@@ -78,20 +78,47 @@ public class ApplicationCell {
         // Create the cell with its name and x/y offsets.
         ApplicationCell cell = new ApplicationCell(cellJson.getString(2), cellJson.getInt(0), cellJson.getInt(1));
 
+        // Parse all of the cell entities and add them to cell if we have any.
+        if (cellJson.length() > 3) {
+            // Get the entities array.
+            JSONArray cellEntities = cellJson.getJSONArray(3);
 
-        // TODO Parse entities!
+            for (int entityIndex = 0; entityIndex < cellEntities.length(); entityIndex++) {
+                JSONObject entityObject = cellEntities.getJSONObject(entityIndex);
 
+                if (!entityObject.has("name")) {
+                    throw new RuntimeException("cell entity 'name' property is required");
+                }
+
+                CellEntity entity = new CellEntity(entityObject.getString("name").toLowerCase());
+
+                Iterator<String> keys = entityObject.keys();
+
+                while (keys.hasNext()) {
+                    String key = keys.next();
+
+                    // Skip the 'name' attribute when we come across it.
+                    if (key.equalsIgnoreCase("name")) {
+                        continue;
+                    }
+
+                    entity.getAttributes().put(key.toLowerCase(), entityObject.getString(key).toLowerCase());
+                }
+
+                cell.getEntities().add(entity);
+            }
+        }
 
         // Parse all of the cell attributes and add them to cell if we have any.
-        if (cellJson.length() == 4) {
-            JSONObject cellDetails = cellJson.getJSONObject(3);
+        if (cellJson.length() > 4) {
+            JSONObject callAttributes = cellJson.getJSONObject(4);
 
-            Iterator<String> keys = cellDetails.keys();
+            Iterator<String> keys = callAttributes.keys();
 
             while (keys.hasNext()) {
                 String key = keys.next();
 
-                cell.getAttributes().put(key.toLowerCase(), cellDetails.getString(key).toLowerCase());
+                cell.getAttributes().put(key.toLowerCase(), callAttributes.getString(key).toLowerCase());
             }
         }
 
