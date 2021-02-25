@@ -47,9 +47,9 @@ public class DungeonGenerator {
 		// Generate some corridors between our rooms.
 		this.generateCorridors(rooms);
 		
-		// Set the room cells.
+		// Set an EMPTY cell for every room cell.
 		for (Room room : rooms) {
-			this.cells.set("ROOM", null, room.getX(), room.getY(), room.getWidth(), room.getHeight());
+			this.cells.set("EMPTY", null, null, room.getX(), room.getY(), room.getWidth(), room.getHeight());
 		}
 		
 		// Go over every pattern any attempt to apply it to our grid-based cells.
@@ -136,7 +136,7 @@ public class DungeonGenerator {
 	private void carveVerticalCorridor(int x, int minY, int maxY) {
 		for (int posX = x; posX < x + this.configuration.corridorWidth; posX++) {
 			for (int y = minY; y <= maxY; y++) {
-		      this.cells.set("CORRIDOR", null, posX, y);
+		      this.cells.set("EMPTY", null, null, posX, y);
 		    }
 	    }
 	}
@@ -150,7 +150,7 @@ public class DungeonGenerator {
 	private void carveHorizontalCorridor(int y, int minX, int maxX) {
 		for (int posY = y; posY < y + this.configuration.corridorWidth; posY++) {
 			for (int x = minX; x <= maxX; x++) {
-				this.cells.set("CORRIDOR", null, x, posY);
+				this.cells.set("EMPTY", null,null, x, posY);
 		    }
 	    }
 	}

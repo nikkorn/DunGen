@@ -1,12 +1,13 @@
 package dungen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cells {
 	/**
 	 * The singleton out-of-bounds cell.
 	 */
-	public static final Cell OUT_OF_BOUNDS = new Cell("OOB", null); 
+	public static final Cell OUT_OF_BOUNDS = new Cell("OOB", null, null);
 	/**
 	 * The width/height of the cells map.
 	 */
@@ -29,16 +30,16 @@ public class Cells {
 	/**
 	 * Sets the cells at x/y with width/height.
 	 * @param type The type of each cell.
-	 * @param details The details of each cell.
+	 * @param attributes The attributes of each cell.
 	 * @param x
 	 * @param y
 	 * @param width
 	 * @param height
 	 */
-	public void set(String type, HashMap<String, String> details, int x, int y, int width, int height) {
+	public void set(String type, HashMap<String, String> attributes, ArrayList<CellEntity> entities, int x, int y, int width, int height) {
 		for (int posX = x; posX < (x + width); posX++) {
 			for (int posY = y; posY < (y + height); posY++) {
-				this.cells.put(getKey(posX, posY), new Cell(type, details));
+				this.cells.put(getKey(posX, posY), new Cell(type, attributes == null ? new HashMap<String, String>() : attributes, entities == null ? new ArrayList<CellEntity>() : entities));
 			}
 		}
 	}
@@ -46,12 +47,12 @@ public class Cells {
 	/**
 	 * Sets the cell at x/y.
 	 * @param type The type of the cell.
-	 * @param details The details of the cell.
+	 * @param attributes The attributes of the cell.
 	 * @param x
 	 * @param y
 	 */
-	public void set(String type, HashMap<String, String> details, int x, int y) {
-		this.set(type, details, x, y, 1, 1);
+	public void set(String type, HashMap<String, String> attributes, ArrayList<CellEntity> entities, int x, int y) {
+		this.set(type, attributes, entities, x, y, 1, 1);
 	}
 	
 	/**
@@ -72,7 +73,7 @@ public class Cells {
 		}
 		
 		// If there is no actual cell at this valid position then return a wall cell.
-		return new Cell("WALL", null);
+		return new Cell("WALL", null, null);
 	}
 	
 	

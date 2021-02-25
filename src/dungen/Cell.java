@@ -14,11 +14,11 @@ public class Cell {
 	/**
 	 * The additional cell attributes.
 	 */
-	private HashMap<String, String> attributes = new HashMap<String, String>();
+	private HashMap<String, String> attributes;
 	/**
 	 * The list of entities linked to the cell.
 	 */
-	private ArrayList<CellEntity> entities = new ArrayList<CellEntity>();
+	private ArrayList<CellEntity> entities;
 	/**
 	 * Whether the cell is frozen.
 	 */
@@ -28,10 +28,12 @@ public class Cell {
 	 * Creates a new instance of the Cell class.
 	 * @param type The cell type.
 	 * @param attributes The cell attributes.
+	 *
 	 */
-	public Cell(String type, HashMap<String, String> attributes) {
+	public Cell(String type, HashMap<String, String> attributes, ArrayList<CellEntity> entities) {
 		this.type       = type;
 		this.attributes = attributes;
+		this.entities   = entities;
 	}
 
 	public String getType() {

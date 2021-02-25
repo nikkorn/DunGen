@@ -98,7 +98,7 @@ public class PatternApplicator {
 	 */
 	private static boolean doesSequenceApplyToSpace(Sequence sequence, Cells cells, int x, int y) {
 		// A sequence will apply to a cell if every match cell in the sequence 
-		for (PatternCell cell : sequence.getMatchCells()) {
+		for (MatchCell cell : sequence.getMatchCells()) {
 			// Get the absolute positioned existing cell.
 			Cell target = cells.get(x + cell.getOffsetX(), y + cell.getOffsetY());
 			
@@ -113,7 +113,7 @@ public class PatternApplicator {
 			}
 			
 			// The type of the cell that exists at the specified position must be a match for the matching pattern cell.
-			if (!cell.matchesType(target.getType())) {
+			if (!cell.matchesCell(target)) {
 				return false;
 			}
 		}
@@ -130,18 +130,18 @@ public class PatternApplicator {
 	 */
 	private static void applySequence(ApplicationPosition applicationPosition, Cells cells, PatternFreeze freeze) {
 		// Apply the sequence application cells to our cells grid.
-		for (PatternCell applyCell : applicationPosition.getSequence().getApplyCells()) {
+		for (ApplicationCell applyCell : applicationPosition.getSequence().getApplyCells()) {
 			// Get the absolute x/y of the cell we are trying to set.
 			int x = (int) (applicationPosition.getPosition().getX() + applyCell.getOffsetX());
 			int y = (int) (applicationPosition.getPosition().getY() + applyCell.getOffsetY());
 			
 			// Set the apply cell.
-			cells.set(applyCell.getName(), applyCell.getDetails(), x, y);
+			cells.set(applyCell.getType(), applyCell.getAttributes(), applyCell.getEntities(), x, y);
 		}
 		
 		// Are we freezing our matched cells?
 		if (freeze == PatternFreeze.ON_MATCH || freeze == PatternFreeze.ON_BOTH) {
-			for (PatternCell matchCell : applicationPosition.getSequence().getMatchCells()) {
+			for (MatchCell matchCell : applicationPosition.getSequence().getMatchCells()) {
 				// Get the absolute x/y of the cell we are trying to freeze.
 				int x = (int) (applicationPosition.getPosition().getX() + matchCell.getOffsetX());
 				int y = (int) (applicationPosition.getPosition().getY() + matchCell.getOffsetY());
@@ -153,7 +153,7 @@ public class PatternApplicator {
 		
 		// Are we freezing our applied cells?
 		if (freeze == PatternFreeze.ON_SET || freeze == PatternFreeze.ON_BOTH) {
-			for (PatternCell applyCell : applicationPosition.getSequence().getApplyCells()) {
+			for (ApplicationCell applyCell : applicationPosition.getSequence().getApplyCells()) {
 				// Get the absolute x/y of the cell we are trying to freeze.
 				int x = (int) (applicationPosition.getPosition().getX() + applyCell.getOffsetX());
 				int y = (int) (applicationPosition.getPosition().getY() + applyCell.getOffsetY());

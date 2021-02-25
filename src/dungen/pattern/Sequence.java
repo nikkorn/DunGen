@@ -10,11 +10,11 @@ public class Sequence {
 	/**
 	 * The cells that this sequence matches on.
 	 */
-	private ArrayList<PatternCell> matches;
+	private ArrayList<MatchCell> matches;
 	/**
 	 * The cells that are applied when this sequence is matched.
 	 */
-	private ArrayList<PatternCell> applies;
+	private ArrayList<ApplicationCell> applies;
 	/**
 	 * The optional number of tickets help by this sequence. Defaults to 1.
 	 */
@@ -26,7 +26,7 @@ public class Sequence {
 	 * @param applies The cells that are applied when this sequence is matched.
 	 * @param tickets The optional number of tickets help by this sequence.
 	 */
-	private Sequence(ArrayList<PatternCell> matches, ArrayList<PatternCell> applies, int tickets) {
+	private Sequence(ArrayList<MatchCell> matches, ArrayList<ApplicationCell> applies, int tickets) {
 		this.matches = matches;
 		this.applies = applies;
 		this.tickets = tickets;
@@ -36,7 +36,7 @@ public class Sequence {
 	 * Gets the cells that this sequence matches on.
 	 * @return The cells that this sequence matches on.
 	 */
-	public ArrayList<PatternCell> getMatchCells() {
+	public ArrayList<MatchCell> getMatchCells() {
 		return matches;
 	}
 
@@ -44,7 +44,7 @@ public class Sequence {
 	 * Gets the cells that are applied when this sequence is matched.
 	 * @return The cells that are applied when this sequence is matched.
 	 */
-	public ArrayList<PatternCell> getApplyCells() {
+	public ArrayList<ApplicationCell> getApplyCells() {
 		return applies;
 	}
 	
@@ -63,15 +63,15 @@ public class Sequence {
 	 */
 	public static Sequence fromJSON(JSONObject sequenceJson) {
 		// Parse the pattern match cells.
-		ArrayList<PatternCell> matchCells = new ArrayList<PatternCell>();
+		ArrayList<MatchCell> matchCells = new ArrayList<MatchCell>();
 		for (int cellIndex = 0; cellIndex < sequenceJson.getJSONArray("matches").length(); cellIndex++) {
-			matchCells.add(PatternCell.fromJSON(sequenceJson.getJSONArray("matches").getJSONArray(cellIndex)));
+			matchCells.add(MatchCell.fromJSON(sequenceJson.getJSONArray("matches").getJSONArray(cellIndex)));
 		}
 		
 		// Parse the pattern apply cells.
-		ArrayList<PatternCell> applyCells = new ArrayList<PatternCell>();
+		ArrayList<ApplicationCell> applyCells = new ArrayList<ApplicationCell>();
 		for (int cellIndex = 0; cellIndex < sequenceJson.getJSONArray("applies").length(); cellIndex++) {
-			applyCells.add(PatternCell.fromJSON(sequenceJson.getJSONArray("applies").getJSONArray(cellIndex)));
+			applyCells.add(ApplicationCell.fromJSON(sequenceJson.getJSONArray("applies").getJSONArray(cellIndex)));
 		}
 		
 		// Parse the number of tickets for the sequence.
