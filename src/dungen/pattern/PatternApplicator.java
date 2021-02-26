@@ -3,7 +3,6 @@ package dungen.pattern;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
-import dungen.Cell;
 import dungen.Cells;
 import dungen.Configuration;
 import dungen.lotto.Lotto;
@@ -98,22 +97,8 @@ public class PatternApplicator {
 	 */
 	private static boolean doesSequenceApplyToSpace(Sequence sequence, Cells cells, int x, int y) {
 		// A sequence will apply to a cell if every match cell in the sequence 
-		for (MatchCell cell : sequence.getMatchCells()) {
-			// Get the absolute positioned existing cell.
-			Cell target = cells.get(x + cell.getOffsetX(), y + cell.getOffsetY());
-			
-			// No out-of-bounds cell can be treated as a matching cell.
-			if (target == Cells.OUT_OF_BOUNDS) {
-				return false;
-			}
-			
-			// No frozen cell can be treated as a matching cell.
-			if (target.isFrozen()) {
-				return false;
-			}
-			
-			// The type of the cell that exists at the specified position must be a match for the matching pattern cell.
-			if (!cell.matchesCell(target)) {
+		for (Matcher matcher : sequence.getMatchers()) {
+			if (!matcher.isMatch(cells, x, y)) {
 				return false;
 			}
 		}
@@ -141,13 +126,8 @@ public class PatternApplicator {
 		
 		// Are we freezing our matched cells?
 		if (freeze == PatternFreeze.ON_MATCH || freeze == PatternFreeze.ON_BOTH) {
-			for (MatchCell matchCell : applicationPosition.getSequence().getMatchCells()) {
-				// Get the absolute x/y of the cell we are trying to freeze.
-				int x = (int) (applicationPosition.getPosition().getX() + matchCell.getOffsetX());
-				int y = (int) (applicationPosition.getPosition().getY() + matchCell.getOffsetY());
-				
-				// Freeze the matched cell.
-				cells.get(x, y).setFrozen(true);
+			for (Matcher matcher : applicationPosition.getSequence().getMatchers()) {
+				matcher.freeze(cells, (int)applicationPosition.getPosition().getX(), (int)applicationPosition.getPosition().getY());
 			}
 		}
 		

@@ -8,9 +8,9 @@ import org.json.JSONObject;
  */
 public class Sequence {
 	/**
-	 * The cells that this sequence matches on.
+	 * The cells/cell areas that this sequence matches on.
 	 */
-	private ArrayList<MatchCell> matches;
+	private ArrayList<Matcher> matchers;
 	/**
 	 * The cells that are applied when this sequence is matched.
 	 */
@@ -22,22 +22,22 @@ public class Sequence {
 	
 	/**
 	 * Creates a new instance of the Sequence class.
-	 * @param matches The cells that this sequence matches on.
+	 * @param matchers The cells that this sequence matches on.
 	 * @param applies The cells that are applied when this sequence is matched.
 	 * @param tickets The optional number of tickets help by this sequence.
 	 */
-	private Sequence(ArrayList<MatchCell> matches, ArrayList<ApplicationCell> applies, int tickets) {
-		this.matches = matches;
-		this.applies = applies;
-		this.tickets = tickets;
+	private Sequence(ArrayList<Matcher> matchers, ArrayList<ApplicationCell> applies, int tickets) {
+		this.matchers = matchers;
+		this.applies  = applies;
+		this.tickets  = tickets;
 	}
 	
 	/**
 	 * Gets the cells that this sequence matches on.
 	 * @return The cells that this sequence matches on.
 	 */
-	public ArrayList<MatchCell> getMatchCells() {
-		return matches;
+	public ArrayList<Matcher> getMatchers() {
+		return matchers;
 	}
 
 	/**
@@ -62,10 +62,10 @@ public class Sequence {
 	 * @return
 	 */
 	public static Sequence fromJSON(JSONObject sequenceJson) {
-		// Parse the pattern match cells.
-		ArrayList<MatchCell> matchCells = new ArrayList<MatchCell>();
+		// Parse the pattern matchers.
+		ArrayList<Matcher> matchCells = new ArrayList<Matcher>();
 		for (int cellIndex = 0; cellIndex < sequenceJson.getJSONArray("matches").length(); cellIndex++) {
-			matchCells.add(MatchCell.fromJSON(sequenceJson.getJSONArray("matches").getJSONArray(cellIndex)));
+			matchCells.add(Matcher.fromJSON(sequenceJson.getJSONArray("matches").getJSONArray(cellIndex)));
 		}
 		
 		// Parse the pattern apply cells.
