@@ -14,35 +14,7 @@
             "max": 1,
             "freeze": "on_both",
             "matches": [
-            	[-2, -2, "EMPTY"],
-                [-1, -2, "EMPTY"],
-                [0, -2, "EMPTY"],
-                [1, -2, "EMPTY"],
-                [2, -2, "EMPTY"],
-
-                [-2, -1, "EMPTY"],
-                [-1, -1, "EMPTY"],
-                [0, -1, "EMPTY"],
-                [1, -1, "EMPTY"],
-                [2, -1, "EMPTY"],
-
-                [-2, 0, "EMPTY"],
-                [-1, 0, "EMPTY"],
-                [0, 0, "EMPTY"],
-                [1, 0, "EMPTY"],
-                [2, 0, "EMPTY"],
-
-                [-2, 1, "EMPTY"],
-                [-1, 1, "EMPTY"],
-                [0, 1, "EMPTY"],
-                [1, 1, "EMPTY"],
-                [2, 1, "EMPTY"],
-
-                [-2, 2, "EMPTY"],
-                [-1, 2, "EMPTY"],
-                [0, 2, "EMPTY"],
-                [1, 2, "EMPTY"],
-                [2, 2, "EMPTY"]
+                [-2, -2, 2, 2, "EMPTY"]
             ],
             "applies": [
                 [-1, -1, "EMPTY", [{ "name": "SPAWN", "id": "0" }]],

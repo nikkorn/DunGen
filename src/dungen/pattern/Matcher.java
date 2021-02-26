@@ -3,6 +3,7 @@ package dungen.pattern;
 import org.json.JSONArray;
 import dungen.Cell;
 import dungen.Cells;
+import dungen.pattern.selector.Selector;
 
 /**
  * A pattern matcher that attempts to match on an absolute cell position or area.
@@ -11,7 +12,7 @@ public class Matcher {
     /**
      * The cell pattern selector.
      */
-    private String selector;
+    private Selector selector;
     /**
      * The x/y offset for a single cell match.
      */
@@ -34,7 +35,7 @@ public class Matcher {
      * @param yOffsetEnd
      */
     private Matcher(String selector, int xOffsetStart, int yOffsetStart, int xOffsetEnd, int yOffsetEnd) {
-        this.selector          = selector.replaceAll("\\s+","");
+        this.selector          = Selector.create(selector);
         this.xOffsetStart      = xOffsetStart;
         this.yOffsetStart      = yOffsetStart;
         this.xOffsetEnd        = xOffsetEnd;
@@ -49,7 +50,7 @@ public class Matcher {
      * @param yOffset
      */
     private Matcher(String selector, int xOffset, int yOffset) {
-        this.selector          = selector.replaceAll("\\s+","");
+        this.selector          = Selector.create(selector);
         this.xOffset           = xOffset;
         this.yOffset           = yOffset;
         this.isSingleCellMatch = true;
@@ -123,32 +124,7 @@ public class Matcher {
      * @return Whether the given cell satisfies this matcher.
      */
     private boolean isCellMatch(Cell cell) {
-        // MATCHING
-        // Cell type 'EMPTY'
-        // Cell attribute with type exists '[IsGoodCell]'
-        // Cell attribute has given value '[IsGoodCell:true]'
-        // Cell entity with name exists '(Chest)'
-        // Cell entity with attribute exists '(Chest[Quality])'
-        // Cell entity attribute has given value '(Chest[Quality:5])'
-        // Pattern can be split with '|' and each section must be true.
-        // ! Negates, (e.g. '!EMPTY|!GRASS' not a grass or empty cell)
-
-        // No out-of-bounds cell can be treated as a matching cell.
-        if (cell == Cells.OUT_OF_BOUNDS) {
-            return false;
-        }
-
-        // No frozen cell can be treated as a matching cell.
-        if (cell.isFrozen()) {
-            return false;
-        }
-
-        // The type of the cell that exists at the specified position must be a match for the matching pattern cell.
-        if (!this.selector.equalsIgnoreCase(cell.getType())) {
-            return false;
-        }
-
-        return true;
+        return this.selector.matches(cell);
     }
 
     /**
