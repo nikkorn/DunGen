@@ -28,7 +28,7 @@ public class Selector {
         }
 
         // Split the selector at '|', creating a new part instance for each value.
-        for (String part : selector.split("|")) {
+        for (String part : selector.split("\\|")) {
             this.parts.add(new Part(part));
         }
     }

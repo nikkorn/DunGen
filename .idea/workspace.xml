@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f14bc88c-9c96-4eaf-811f-431628f0c83a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dungen/pattern/selector/Part.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dungen/pattern/selector/PartTokens.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dungen/pattern/selector/Selector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/Matcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/Matcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dungen/pattern/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/pattern/Matcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tester.dungen.json" beforeDir="false" afterPath="$PROJECT_DIR$/tester.dungen.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/selector/Selector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DunGenVisualiser/dungen/pattern/selector/Selector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dungen/pattern/selector/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dungen/pattern/selector/Selector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,22 +85,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="391" height="466" key="DebuggerActiveHint/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614256629283" />
-    <state width="1882" height="80" key="GridCell.Tab.0.bottom" timestamp="1614360649430">
+    <state width="1899" height="80" key="GridCell.Tab.0.bottom" timestamp="1614361229087">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="80" key="GridCell.Tab.0.bottom/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614360649430" />
-    <state width="1882" height="80" key="GridCell.Tab.0.center" timestamp="1614360649429">
+    <state width="1899" height="80" key="GridCell.Tab.0.bottom/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614361229087" />
+    <state width="1899" height="80" key="GridCell.Tab.0.center" timestamp="1614361229087">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="80" key="GridCell.Tab.0.center/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614360649429" />
-    <state width="1882" height="80" key="GridCell.Tab.0.left" timestamp="1614360649429">
+    <state width="1899" height="80" key="GridCell.Tab.0.center/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614361229087" />
+    <state width="1899" height="80" key="GridCell.Tab.0.left" timestamp="1614361229087">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="80" key="GridCell.Tab.0.left/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614360649429" />
-    <state width="1882" height="80" key="GridCell.Tab.0.right" timestamp="1614360649429">
+    <state width="1899" height="80" key="GridCell.Tab.0.left/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614361229087" />
+    <state width="1899" height="80" key="GridCell.Tab.0.right" timestamp="1614361229087">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1882" height="80" key="GridCell.Tab.0.right/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614360649429" />
+    <state width="1899" height="80" key="GridCell.Tab.0.right/1920.0.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1614361229087" />
     <state width="1882" height="162" key="GridCell.Tab.1.bottom" timestamp="1614353649173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
